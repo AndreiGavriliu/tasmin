@@ -1,0 +1,5 @@
+fastapi[all]
+scapy
+requests
+sqlalchemy
+alembic

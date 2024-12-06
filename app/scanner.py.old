@@ -1,0 +1,105 @@
+from sqlalchemy import create_engine, Column, String, Integer, DateTime, func
+from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import sessionmaker
+import json
+import requests
+from concurrent.futures import ThreadPoolExecutor
+from ipaddress import ip_network
+import socket
+
+# SQLAlchemy Setup
+DATABASE_URL = "sqlite:///tasmota_devices.db"
+Base = declarative_base()
+engine = create_engine(DATABASE_URL)
+SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
+
+# Device Model
+class TasmotaDevice(Base):
+    __tablename__ = "devices"
+
+    id = Column(Integer, primary_key=True, index=True)
+    unique_id = Column(String, unique=True, nullable=False)
+    ip_address = Column(String, nullable=False)
+    hostname = Column(String, nullable=True)
+    mac_address = Column(String, nullable=True)
+    firmware_version = Column(String, nullable=True)
+    last_seen = Column(DateTime, server_default=func.now(), onupdate=func.now())
+
+# Database Initialization
+def init_db():
+    Base.metadata.create_all(bind=engine)
+
+# Scanner Class
+class TasmotaDeviceScanner:
+    def __init__(self):
+        init_db()  # Ensure the database is initialized
+
+    def discover_devices(self, subnet="10.0.20.0/24"):
+        """Discover devices on the network using a ping sweep."""
+        reachable_devices = []
+        ip_list = [str(ip) for ip in ip_network(subnet, strict=False)]
+        with ThreadPoolExecutor() as executor:
+            results = executor.map(self.ping_device, ip_list)
+        for result in results:
+            if result:
+                reachable_devices.append(result)
+        return reachable_devices
+
+    def ping_device(self, ip):
+        """Ping a device and check if it's reachable."""
+        try:
+            socket.setdefaulttimeout(0.5)
+            sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+            result = sock.connect_ex((ip, 80))  # Test port 80 (HTTP)
+            sock.close()
+            return ip if result == 0 else None
+        except socket.error:
+            return None
+
+    def identify_tasmota(self, ip):
+        """Check if a device is a Tasmota device and extract its information."""
+        url = f"http://{ip}/cm"
+        try:
+            response = requests.get(url, params={"cmnd": "Status 0"}, timeout=1)
+            if response.status_code == 200:
+                data = response.json()
+                return {
+                    "unique_id": data.get("StatusNET", {}).get("Mac"),
+                    "ip_address": ip,
+                    "hostname": data.get("Status", {}).get("DeviceName"),
+                    "mac_address": data.get("StatusNET", {}).get("Mac"),
+                    "firmware_version": data.get("StatusFWR", {}).get("Version"),
+                }
+        except requests.RequestException:
+            pass
+        return None
+
+    def save_device(self, device):
+        """Save device information to the database using SQLAlchemy."""
+        session = SessionLocal()
+        try:
+            # Check if the device already exists
+            existing_device = session.query(TasmotaDevice).filter_by(unique_id=device["unique_id"]).first()
+            if existing_device:
+                # Update existing device
+                for key, value in device.items():
+                    setattr(existing_device, key, value)
+                session.add(existing_device)
+            else:
+                # Add new device
+                new_device = TasmotaDevice(**device)
+                session.add(new_device)
+            session.commit()
+        except Exception as e:
+            session.rollback()
+            print(f"Error saving device: {e}")
+        finally:
+            session.close()
+
+    def scan_and_store(self, subnet="10.0.20.0/24"):
+        """Scan the network and store Tasmota devices."""
+        devices = self.discover_devices(subnet)
+        for ip in devices:
+            tasmota_device = self.identify_tasmota(ip)
+            if tasmota_device:
+                self.save_device(tasmota_device)

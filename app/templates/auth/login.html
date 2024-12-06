@@ -1,0 +1,49 @@
+{% extends "base_empty.html" %}
+{% block content %}
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    <div class="card card-md">
+      <div class="card-body">
+        <h2 class="h2 text-center mb-4">Login to your account</h2>
+        <form action="/login" method="post" autocomplete="off" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Username</label>
+            <input type="text" class="form-control" placeholder="Your username" autocomplete="off" id="username"
+              name="username" required>
+          </div>
+          <div class="mb-2">
+            <label class="form-label">
+              Password
+            </label>
+            <div class="input-group input-group-flat">
+              <input type="password" class="form-control" placeholder="Your password" autocomplete="off" id="password"
+                name="password" required>
+            </div>
+          </div>
+          <div class="form-footer">
+            <button type="submit" class="btn btn-primary w-100">Sign in</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-6 offset-md-3">
+    {% if error is defined %}
+    <br/>
+    <div class="alert alert-danger" role="alert">
+      <div class="d-flex">
+        <div>
+          <i class="ti ti-alert-triangle"></i>&nbsp;
+        </div>
+        <div>
+          <h4 class="alert-title">Authentication error</h4>
+          <div class="text-secondary">{{ error }}</div>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>
+{% endblock %}
