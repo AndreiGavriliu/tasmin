@@ -216,3 +216,38 @@ def discover(ip_start, ip_end, db: Session):
 
     return { "devices": devices, "errors": errors }
 
+
+def update_device_by_mac(mac_address, db: Session):
+    """
+    Updates the device with the provided MAC address with the latest status data
+    retrieved from the Tasmota device. Similar to the 'discover' function, it retrieves
+    all status sections for the device and updates the database.
+
+    Args:
+        mac_address (str): The MAC address of the device to update.
+        db (Session): The database session.
+
+    Returns:
+        dict: A dictionary with the result of the update operation.
+    """
+    # Query for the device with the provided MAC address
+    device = db.query(Devices).filter(Devices.statusnet_mac == mac_address).first()
+    
+    if device:
+        # Get the device status from the Tasmota device (using status 0)
+        device_status = get_device_status(device.statusnet_ipaddress)
+
+        if device_status:
+            logging.info(f"Updating device with MAC address {mac_address}")
+            
+            # Update the device with the new status data (similar to discover function)
+            update_device_from_status(device_status, device)
+            
+            # Commit the changes to the database
+            db.commit()
+            
+            return {"status": "success", "message": f"Device {mac_address} updated."}
+        else:
+            return {"status": "error", "message": f"Unable to get status for device {mac_address}."}
+    else:
+        return {"status": "error", "message": f"Device with MAC address {mac_address} not found."}

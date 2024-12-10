@@ -1,0 +1,44 @@
+{% extends "devices/details.html" %}
+{% block devices_content %}
+<h2 class="mb-4">About</h2>
+<p class="card-subtitle">Device actions</p>
+<div class="row mb-5">
+    <div class="col">
+        <button class="btn btn-outline-success">Firmware Update</button>
+        <button class="btn btn-outline-danger">Restart</button>
+    </div>
+</div>
+<!-- <p class="card-subtitle">Details</p> -->
+<div class="row">
+    <div class="col">
+        <!-- <form action="{{ request.url }}" method="post" autocomplete="off" novalidate> -->
+            <div class="datagrid">
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Version</div>
+                    <div class="datagrid-content"><code>{{ device.statusfwr_version }}</code></div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Build Date & Time</div>
+                    <div class="datagrid-content"><code>{{ device.statusfwr_builddatetime }}</code></div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Core/SDK Version</div>
+                    <div class="datagrid-content"><code>{{ device.statusfwr_core }}</code></div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Uptime</div>
+                    <div class="datagrid-content"><code>{{ device.statussts_uptime }}</code></div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Flash Write Count</div>
+                    <div class="datagrid-content"><code>{{ device.statusprm_savecount }}</code></div>
+                </div>
+                <div class="datagrid-item">
+                    <div class="datagrid-title">Boot Count</div>
+                    <div class="datagrid-content"><code>{{ device.statusprm_bootcount }}</code></div>
+                </div>
+            </div>
+        <!-- </form> -->
+    </div>
+</div>
+{% endblock %}

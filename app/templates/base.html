@@ -55,7 +55,7 @@
         <div class="collapse navbar-collapse" id="sidebar-menu">
           <ul class="navbar-nav pt-lg-3">
             <li class="nav-item">
-              <a class="nav-link" href="./">
+              <a class="nav-link" href="{{ request.url.scheme }}://{{ request.url.netloc }}/">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   <i class="ti ti-home"></i>
                 </span>
@@ -65,7 +65,7 @@
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./devices">
+              <a class="nav-link" href="{{ request.url.scheme }}://{{ request.url.netloc }}/devices">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   <i class="ti ti-cpu"></i>
                 </span>
@@ -74,11 +74,21 @@
                 </span>
               </a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{{ request.url.scheme }}://{{ request.url.netloc }}/updates">
+                <span class="nav-link-icon d-md-none d-lg-inline-block">
+                  <i class="ti ti-refresh"></i>
+                </span>
+                <span class="nav-link-title">
+                  Updates
+                </span>
+              </a>
+            </li>
             <li>
               <hr />
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="./settings">
+              <a class="nav-link" href="{{ request.url.scheme }}://{{ request.url.netloc }}/settings">
                 <span class="nav-link-icon d-md-none d-lg-inline-block">
                   <i class="ti ti-adjustments-x"></i>
                 </span>

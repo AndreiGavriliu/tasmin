@@ -17,25 +17,37 @@
     </div>
 </div>
 <!-- Page body -->
+ 
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for device in devices %}
-                {% if device.favorite == True %}
-                    <div class="col">
-                        <div class="card">
-                            <div class="ribbon bg-green">ON</div>
-                            <div class="card-body">
-                                <a href="/devices/{{ device.unique_id }}">
-                                    <h3 class="card-title">{{ device.hostname }}</h3>
-                                </a>
-                                <p class="text-secondary">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto
-                                    at consectetur culpa ducimus eum fuga fugiat, ipsa iusto, modi nostrum recusandae reiciendis
-                                    saepe.</p>
+            {% if device.favorite == True %}
+            <a href="/devices/{{ device.unique_id }}" class="text-decoration-none">
+                <div class="col">
+                    <div class="card card-link-pop">
+                        {% if device.statussts_power == "ON" %}
+                        <div class="ribbon bg-green">{{ device.statussts_power }}</div>
+                        {% elif device.statussts_power == "OFF" %}
+                        <div class="ribbon bg-red">{{ device.statussts_power }}</div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h3 class="card-title">{{ device.statusnet_hostname }}</h3>
+                            <div class="datagrid">
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title"><i class="ti ti-wifi"></i>&nbsp;Wi-Fi SSID</div>
+                                    <div class="datagrid-content">{{ device.statussts_wifi_ssid }}</div>
+                                </div>
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title"><i class="ti ti-cpu"></i>&nbsp;Firmware Version</div>
+                                    <div class="datagrid-content">{{ device.statusfwr_version }}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                {% endif %}
+                </div>
+            </a>
+            {% endif %}
             {% endfor %}
         </div>
     </div>

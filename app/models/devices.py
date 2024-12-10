@@ -1,6 +1,6 @@
 from database import Base 
 from sqlalchemy import create_engine, Column, String, Integer, DateTime, Boolean, func, Float, Text
-from sqlalchemy.orm import relationship
+from sqlalchemy.orm import relationship, load_only
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import Session
 
@@ -102,5 +102,11 @@ class Devices(Base):
 
     # Additional method to get all devices
     @classmethod
-    def get_all_devices(cls, db: Session):
-        return db.query(cls).all()
+    def get_all_devices(cls, db: Session, columns: list[str] = None):
+        if columns:
+            # Convert column names to ORM attributes and query explicitly
+            column_attrs = [getattr(cls, column) for column in columns]
+            return db.query(*column_attrs).all()
+        else:
+            # Default to querying the full model
+            return db.query(cls).all()

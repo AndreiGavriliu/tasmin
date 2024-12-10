@@ -1,0 +1,90 @@
+{% extends "devices/details.html" %}
+{% block devices_content %}
+<h2 class="mb-4">Logging parameters</h2>
+<p class="card-subtitle">Configure log levels and Syslog Server</p>
+<p class="text-secondary mb-4"></p>
+<div class="row">
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md-6 offset-md-3">
+                <form action="{{ request.url }}" method="post" autocomplete="off" novalidate>
+                <div class="mb-3">
+                    <label class="form-label">Serial log level</label>
+                    <select class="form-select" name="statuslog_seriallog">
+                        <option value="0" {% if device.statuslog_seriallog == 0 %}selected{% endif %}>None</option>
+                        <option value="1" {% if device.statuslog_seriallog == 1 %}selected{% endif %}>Error</option>
+                        <option value="2" {% if device.statuslog_seriallog == 2 %}selected{% endif %}>Info</option>
+                        <option value="3" {% if device.statuslog_seriallog == 3 %}selected{% endif %}>Debug</option>
+                        <option value="4" {% if device.statuslog_seriallog == 4 %}selected{% endif %}>More debug</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Web log level</label>
+                    <select class="form-select" name="statuslog_weblog">
+                        <option value="0" {% if device.statuslog_weblog == 0 %}selected{% endif %}>None</option>
+                        <option value="1" {% if device.statuslog_weblog == 1 %}selected{% endif %}>Error</option>
+                        <option value="2" {% if device.statuslog_weblog == 2 %}selected{% endif %}>Info</option>
+                        <option value="3" {% if device.statuslog_weblog == 3 %}selected{% endif %}>Debug</option>
+                        <option value="4" {% if device.statuslog_weblog == 4 %}selected{% endif %}>More debug</option>
+                    </select>
+                </div>
+                <!-- <div class="mb-3">
+                    <label class="form-label">MQTT log level</label>
+                    <select class="form-select">
+                        <option value="0" {% if device.statuslog_syslog == 0 %}selected{% endif %}>None</option>
+                        <option value="1" {% if device.statuslog_syslog == 1 %}selected{% endif %}>Error</option>
+                        <option value="2" {% if device.statuslog_syslog == 2 %}selected{% endif %}>Info</option>
+                        <option value="3" {% if device.statuslog_syslog == 3 %}selected{% endif %}>Debug</option>
+                        <option value="4" {% if device.statuslog_syslog == 4 %}selected{% endif %}>More debug</option>
+                    </select>
+                </div> -->
+                <div class="mb-3">
+                    <label class="form-label">Syslog level</label>
+                    <select class="form-select" name="statuslog_syslog">
+                        <option value="0" {% if device.statuslog_syslog == 0 %}selected{% endif %}>None</option>
+                        <option value="1" {% if device.statuslog_syslog == 1 %}selected{% endif %}>Error</option>
+                        <option value="2" {% if device.statuslog_syslog == 2 %}selected{% endif %}>Info</option>
+                        <option value="3" {% if device.statuslog_syslog == 3 %}selected{% endif %}>Debug</option>
+                        <option value="4" {% if device.statuslog_syslog == 4 %}selected{% endif %}>More debug</option>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <div class="form-input">
+                        <label class="form-label">Syslog host</label>
+                        <input type="text" class="form-control" name="statuslog_loghost" placeholder="Syslog IP or Hostname" value="{{ device.statuslog_loghost }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-input">
+                        <label class="form-label">Syslog port</label>
+                        <input type="text" class="form-control" name="statuslog_logport" placeholder="Syslog Host Port (default 514)" value="{{ device.statuslog_logport }}">
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <div class="form-input">
+                        <label class="form-label">Telemetry period</label>
+                        <input type="text" class="form-control" name="statuslog_teleperiod" placeholder="Telemetry period" value="{{ device.statuslog_teleperiod }}">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mb-3">
+        <div class="row">
+            <div class="col-md-1 offset-md-3">
+                <button type="submit"  href="#" class="btn btn-primary">Save</button>
+            </div>
+            <div class="col-md-5 mt-2">
+                {% if result is defined %}
+                    {% if result.status == 'success' %}
+                        <span class="text-success">{{ result.message }}</span>
+                    {% endif %} 
+                    {% if result.status == 'error' %}
+                        <span class="text-error">{{ result.message }}</span>
+                    {% endif %} 
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
