@@ -1,54 +1,76 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <!-- Page header -->
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
                 <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    Welcome, {{ username }}!
-                </div>
-                <h2 class="page-title">
-                    Your favorite devices
-                </h2>
+                <div class="page-pretitle">Welcome, {{ username }}!</div>
+                <h2 class="page-title">Your favorite devices</h2>
             </div>
         </div>
     </div>
 </div>
 <!-- Page body -->
- 
 <div class="page-body">
     <div class="container-xl">
         <div class="row row-cols-1 row-cols-md-3 g-4">
-            {% for device in devices %}
-            {% if device.favorite == True %}
-            <a href="/devices/{{ device.unique_id }}" class="text-decoration-none">
+            {% for device in devices %} {% if device.favorite == True %}
+            <a
+                href="/devices/{{ device.unique_id }}"
+                class="text-decoration-none">
                 <div class="col">
                     <div class="card card-link-pop">
                         {% if device.statussts_power == "ON" %}
-                        <div class="ribbon bg-green">{{ device.statussts_power }}</div>
+                        <div class="ribbon bg-green">
+                            {{ device.statussts_power }}
+                        </div>
                         {% elif device.statussts_power == "OFF" %}
-                        <div class="ribbon bg-red">{{ device.statussts_power }}</div>
+                        <div class="ribbon bg-red">
+                            {{ device.statussts_power }}
+                        </div>
                         {% endif %}
                         <div class="card-body">
-                            <h3 class="card-title">{{ device.statusnet_hostname }}</h3>
+                            <h3 class="card-title">
+                                {{ device.statusnet_hostname }}
+                            </h3>
                             <div class="datagrid">
                                 <div class="datagrid-item">
-                                    <div class="datagrid-title"><i class="ti ti-wifi"></i>&nbsp;Wi-Fi SSID</div>
-                                    <div class="datagrid-content">{{ device.statussts_wifi_ssid }}</div>
+                                    <div class="datagrid-title">
+                                        <i class="ti ti-wifi"></i>&nbsp;Wi-Fi
+                                        SSID
+                                    </div>
+                                    <div class="datagrid-content">
+                                        {{ device.statussts_wifi_ssid }}
+                                    </div>
                                 </div>
                                 <div class="datagrid-item">
-                                    <div class="datagrid-title"><i class="ti ti-cpu"></i>&nbsp;Firmware Version</div>
-                                    <div class="datagrid-content">{{ device.statusfwr_version }}</div>
+                                    <div class="datagrid-title">
+                                        <i class="ti ti-cpu"></i>&nbsp;Firmware
+                                        Version
+                                    </div>
+                                    <div class="datagrid-content">
+                                        {{ device.statusfwr_version }}
+                                    </div>
                                 </div>
+                                <!-- <div class="datagrid-item">
+                                    <div class="datagrid-title">
+                                        <i class="ti ti-external-link"></i
+                                        >&nbsp;IP Address
+                                    </div>
+                                    <div class="datagrid-content">
+                                        <a
+                                            href="http://{{ device.statusnet_ipaddress }}"
+                                            >{{ device.statusnet_ipaddress }}</a
+                                        >
+                                    </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
                 </div>
             </a>
-            {% endif %}
-            {% endfor %}
+            {% endif %} {% endfor %}
         </div>
     </div>
 </div>
@@ -57,19 +79,51 @@
         <div class="row text-center align-items-center flex-row-reverse">
             <div class="col-lg-auto ms-lg-auto">
                 <ul class="list-inline list-inline-dots mb-0">
-                    <li class="list-inline-item"><a href="https://tabler.io/docs" target="_blank" class="link-secondary"
-                            rel="noopener">Documentation</a></li>
-                    <li class="list-inline-item"><a href="./license.html" class="link-secondary">License</a></li>
-                    <li class="list-inline-item"><a href="https://github.com/tabler/tabler" target="_blank"
-                            class="link-secondary" rel="noopener">Source code</a></li>
                     <li class="list-inline-item">
-                        <a href="https://github.com/sponsors/codecalm" target="_blank" class="link-secondary"
+                        <a
+                            href="https://tabler.io/docs"
+                            target="_blank"
+                            class="link-secondary"
+                            rel="noopener"
+                            >Documentation</a
+                        >
+                    </li>
+                    <li class="list-inline-item">
+                        <a href="./license.html" class="link-secondary"
+                            >License</a
+                        >
+                    </li>
+                    <li class="list-inline-item">
+                        <a
+                            href="https://github.com/tabler/tabler"
+                            target="_blank"
+                            class="link-secondary"
+                            rel="noopener"
+                            >Source code</a
+                        >
+                    </li>
+                    <li class="list-inline-item">
+                        <a
+                            href="https://github.com/sponsors/codecalm"
+                            target="_blank"
+                            class="link-secondary"
                             rel="noopener">
                             <!-- Download SVG icon from http://tabler-icons.io/i/heart -->
-                            <svg xmlns="http://www.w3.org/2000/svg" class="icon text-pink icon-filled icon-inline"
-                                width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
-                                fill="none" stroke-linecap="round" stroke-linejoin="round">
-                                <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                class="icon text-pink icon-filled icon-inline"
+                                width="24"
+                                height="24"
+                                viewBox="0 0 24 24"
+                                stroke-width="2"
+                                stroke="currentColor"
+                                fill="none"
+                                stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    stroke="none"
+                                    d="M0 0h24v24H0z"
+                                    fill="none" />
                                 <path
                                     d="M19.5 12.572l-7.5 7.428l-7.5 -7.428a5 5 0 1 1 7.5 -6.566a5 5 0 1 1 7.5 6.572" />
                             </svg>
@@ -82,11 +136,14 @@
                 <ul class="list-inline list-inline-dots mb-0">
                     <li class="list-inline-item">
                         Copyright &copy; 2023
-                        <a href="." class="link-secondary">Tabler</a>.
-                        All rights reserved.
+                        <a href="." class="link-secondary">Tabler</a>. All
+                        rights reserved.
                     </li>
                     <li class="list-inline-item">
-                        <a href="./changelog.html" class="link-secondary" rel="noopener">
+                        <a
+                            href="./changelog.html"
+                            class="link-secondary"
+                            rel="noopener">
                             v1.0.0-beta20
                         </a>
                     </li>
@@ -95,48 +152,81 @@
         </div>
     </div>
 </footer>
-</div>
-</div>
-<div class="modal modal-blur fade" id="modal-report" tabindex="-1" role="dialog" aria-hidden="true">
+<div
+    class="modal modal-blur fade"
+    id="modal-report"
+    tabindex="-1"
+    role="dialog"
+    aria-hidden="true">
     <div class="modal-dialog modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">New report</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"></button>
             </div>
             <div class="modal-body">
                 <div class="mb-3">
                     <label class="form-label">Name</label>
-                    <input type="text" class="form-control" name="example-text-input" placeholder="Your report name">
+                    <input
+                        type="text"
+                        class="form-control"
+                        name="example-text-input"
+                        placeholder="Your report name" />
                 </div>
                 <label class="form-label">Report type</label>
                 <div class="form-selectgroup-boxes row mb-3">
                     <div class="col-lg-6">
                         <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input" checked>
-                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                            <input
+                                type="radio"
+                                name="report-type"
+                                value="1"
+                                class="form-selectgroup-input"
+                                checked />
+                            <span
+                                class="form-selectgroup-label d-flex align-items-center p-3">
                                 <span class="me-3">
                                     <span class="form-selectgroup-check"></span>
                                 </span>
                                 <span class="form-selectgroup-label-content">
-                                    <span class="form-selectgroup-title strong mb-1">Simple</span>
-                                    <span class="d-block text-secondary">Provide only basic data needed for the
-                                        report</span>
+                                    <span
+                                        class="form-selectgroup-title strong mb-1"
+                                        >Simple</span
+                                    >
+                                    <span class="d-block text-secondary"
+                                        >Provide only basic data needed for the
+                                        report</span
+                                    >
                                 </span>
                             </span>
                         </label>
                     </div>
                     <div class="col-lg-6">
                         <label class="form-selectgroup-item">
-                            <input type="radio" name="report-type" value="1" class="form-selectgroup-input">
-                            <span class="form-selectgroup-label d-flex align-items-center p-3">
+                            <input
+                                type="radio"
+                                name="report-type"
+                                value="1"
+                                class="form-selectgroup-input" />
+                            <span
+                                class="form-selectgroup-label d-flex align-items-center p-3">
                                 <span class="me-3">
                                     <span class="form-selectgroup-check"></span>
                                 </span>
                                 <span class="form-selectgroup-label-content">
-                                    <span class="form-selectgroup-title strong mb-1">Advanced</span>
-                                    <span class="d-block text-secondary">Insert charts and additional advanced analyses
-                                        to be inserted in the report</span>
+                                    <span
+                                        class="form-selectgroup-title strong mb-1"
+                                        >Advanced</span
+                                    >
+                                    <span class="d-block text-secondary"
+                                        >Insert charts and additional advanced
+                                        analyses to be inserted in the
+                                        report</span
+                                    >
                                 </span>
                             </span>
                         </label>
@@ -150,7 +240,11 @@
                                 <span class="input-group-text">
                                     https://tabler.io/reports/
                                 </span>
-                                <input type="text" class="form-control ps-0" value="report-01" autocomplete="off">
+                                <input
+                                    type="text"
+                                    class="form-control ps-0"
+                                    value="report-01"
+                                    autocomplete="off" />
                             </div>
                         </div>
                     </div>
@@ -171,31 +265,47 @@
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Client name</label>
-                            <input type="text" class="form-control">
+                            <input type="text" class="form-control" />
                         </div>
                     </div>
                     <div class="col-lg-6">
                         <div class="mb-3">
                             <label class="form-label">Reporting period</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" />
                         </div>
                     </div>
                     <div class="col-lg-12">
                         <div>
-                            <label class="form-label">Additional information</label>
+                            <label class="form-label"
+                                >Additional information</label
+                            >
                             <textarea class="form-control" rows="3"></textarea>
                         </div>
                     </div>
                 </div>
             </div>
             <div class="modal-footer">
-                <a href="#" class="btn btn-link link-secondary" data-bs-dismiss="modal">
+                <a
+                    href="#"
+                    class="btn btn-link link-secondary"
+                    data-bs-dismiss="modal">
                     Cancel
                 </a>
-                <a href="#" class="btn btn-primary ms-auto" data-bs-dismiss="modal">
+                <a
+                    href="#"
+                    class="btn btn-primary ms-auto"
+                    data-bs-dismiss="modal">
                     <!-- Download SVG icon from http://tabler-icons.io/i/plus -->
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24"
-                        stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round"
+                    <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        class="icon"
+                        width="24"
+                        height="24"
+                        viewBox="0 0 24 24"
+                        stroke-width="2"
+                        stroke="currentColor"
+                        fill="none"
+                        stroke-linecap="round"
                         stroke-linejoin="round">
                         <path stroke="none" d="M0 0h24v24H0z" fill="none" />
                         <path d="M12 5l0 14" />
@@ -205,4 +315,6 @@
                 </a>
             </div>
         </div>
-        {% endblock %}
+    </div>
+</div>
+{% endblock %}

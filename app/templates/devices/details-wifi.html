@@ -1,5 +1,4 @@
-{% extends "devices/details.html" %}
-{% block devices_content %}
+{% extends "devices/details.html" %} {% block devices_content %}
 <h2 class="mb-4">Wi-Fi</h2>
 <p class="card-subtitle">Configure you APs</p>
 <p class="text-secondary mb-4"></p>
@@ -10,23 +9,45 @@
                 <label class="form-label">AP #1</label>
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" name="example-text-input" placeholder="SSID">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="example-text-input"
+                            placeholder="SSID" />
                     </div>
                     <div class="col-auto align-self-center">
-                        <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>ZIP Code must be US or CDN format. You can use an extended ZIP+4 code to determine address more accurately.</p>
+                        <span
+                            class="form-help"
+                            data-bs-toggle="popover"
+                            data-bs-placement="top"
+                            data-bs-content="<p>ZIP Code must be US or CDN format. You can use an extended ZIP+4 code to determine address more accurately.</p>
                         <p class='mb-0'><a href='#'>USP ZIP codes lookup tools</a></p>
-                        " data-bs-html="true">?</span>
+                        "
+                            data-bs-html="true"
+                            >?</span
+                        >
                     </div>
                 </div>
                 <label class="form-label">&nbsp;</label>
                 <div class="row">
                     <div class="col">
-                        <input type="text" class="form-control" name="example-text-input" placeholder="Password">
+                        <input
+                            type="text"
+                            class="form-control"
+                            name="example-text-input"
+                            placeholder="Password" />
                     </div>
                     <div class="col-auto align-self-center">
-                        <span class="form-help" data-bs-toggle="popover" data-bs-placement="top" data-bs-content="<p>ZIP Code must be US or CDN format. You can use an extended ZIP+4 code to determine address more accurately.</p>
+                        <span
+                            class="form-help"
+                            data-bs-toggle="popover"
+                            data-bs-placement="top"
+                            data-bs-content="<p>ZIP Code must be US or CDN format. You can use an extended ZIP+4 code to determine address more accurately.</p>
                         <p class='mb-0'><a href='#'>USP ZIP codes lookup tools</a></p>
-                        " data-bs-html="true">?</span>
+                        "
+                            data-bs-html="true"
+                            >?</span
+                        >
                     </div>
                 </div>
             </div>
@@ -36,11 +57,19 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <label class="form-label">AP #2</label>
-                <input type="text" class="form-control" name="example-text-input" placeholder="SSID">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="example-text-input"
+                    placeholder="SSID" />
                 <!-- </div>
             <div class="col-6"> -->
                 <label class="form-label">&nbsp;</label>
-                <input type="text" class="form-control" name="example-text-input" placeholder="Password">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="example-text-input"
+                    placeholder="Password" />
             </div>
         </div>
     </div>
@@ -50,11 +79,18 @@
                 <div class="form-label">Active AP</div>
                 <div>
                     <label class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radios-inline" checked>
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="radios-inline"
+                            checked />
                         <span class="form-check-label">AP #1</span>
                     </label>
                     <label class="form-check form-check-inline">
-                        <input class="form-check-input" type="radio" name="radios-inline">
+                        <input
+                            class="form-check-input"
+                            type="radio"
+                            name="radios-inline" />
                         <span class="form-check-label">AP #2</span>
                     </label>
                 </div>
@@ -65,7 +101,11 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <label class="form-label">Hostname</label>
-                <input type="text" class="form-control" name="example-text-input" placeholder="Device hostname">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="example-text-input"
+                    placeholder="Device hostname" />
             </div>
         </div>
     </div>
@@ -73,7 +113,11 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <label class="form-label">IP Address</label>
-                <input type="text" class="form-control" name="example-text-input" placeholder="Static IP Address">
+                <input
+                    type="text"
+                    class="form-control"
+                    name="example-text-input"
+                    placeholder="Static IP Address" />
                 <hr />
             </div>
         </div>

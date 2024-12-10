@@ -1,13 +1,10 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
                 <!-- Page pre-title -->
-                <div class="page-pretitle">
-                    Scanner
-                </div>
+                <div class="page-pretitle">Scanner</div>
                 <h2 class="page-title">
                     Scan for new devices and update existing ones
                 </h2>
@@ -23,20 +20,37 @@
                     <div class="card-body">
                         <form action="/scan" method="post">
                             <div class="mb-3">
-                                <label for="ip_range" class="form-label">Start IP</label>
-                                <input type="text" class="form-control" id="ip_start" name="ip_start"
-                                    placeholder="e.g., 192.168.1.10" required />
+                                <label for="ip_range" class="form-label"
+                                    >Start IP</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="ip_start"
+                                    name="ip_start"
+                                    placeholder="e.g., 192.168.1.10"
+                                    required />
                             </div>
                             <div class="mb-3">
-                                <label for="ip_range" class="form-label">End IP</label>
-                                <input type="text" class="form-control" id="ip_end" name="ip_end"
-                                    placeholder="e.g., 192.168.1.20" required />
+                                <label for="ip_range" class="form-label"
+                                    >End IP</label
+                                >
+                                <input
+                                    type="text"
+                                    class="form-control"
+                                    id="ip_end"
+                                    name="ip_end"
+                                    placeholder="e.g., 192.168.1.20"
+                                    required />
                             </div>
                             <div class="mt-2">
-                                <button type="submit" class="btn btn-primary w-100">Start Scan</button>
+                                <button
+                                    type="submit"
+                                    class="btn btn-primary w-100">
+                                    Start Scan
+                                </button>
                             </div>
                         </form>
-                        
                     </div>
                 </div>
             </div>
@@ -46,23 +60,23 @@
                 {% if result is defined %}
                 <div class="alert alert-info" role="alert">
                     <div class="d-flex">
-                        <div>
-                            <i class="ti ti-alert-info"></i>&nbsp;
-                        </div>
+                        <div><i class="ti ti-alert-info"></i>&nbsp;</div>
                         <div>
                             <h4 class="alert-title">Scanned for new devices</h4>
-                            <div class="text-secondary">New devices found: {{ result.devices.new}}</div>
+                            <div class="text-secondary">
+                                New devices found: {{ result.devices.new}}
+                            </div>
                         </div>
                     </div>
                 </div>
                 <div class="alert alert-info" role="alert">
                     <div class="d-flex">
-                        <div>
-                            <i class="ti ti-alert-info"></i>&nbsp;
-                        </div>
+                        <div><i class="ti ti-alert-info"></i>&nbsp;</div>
                         <div>
                             <h4 class="alert-title">Updated devices</h4>
-                            <div class="text-secondary">Devices updated: {{ result.devices.updated}}</div>
+                            <div class="text-secondary">
+                                Devices updated: {{ result.devices.updated}}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -70,17 +84,16 @@
                 {% for error in result.errors %}
                 <div class="alert alert-danger" role="alert">
                     <div class="d-flex">
-                        <div>
-                            <i class="ti ti-alert-triangle"></i>&nbsp;
-                        </div>
+                        <div><i class="ti ti-alert-triangle"></i>&nbsp;</div>
                         <div>
                             <h4 class="alert-title">{{ error.title }}</h4>
-                            <div class="text-secondary">{{ error.message }}</div>
+                            <div class="text-secondary">
+                                {{ error.message }}
+                            </div>
                         </div>
                     </div>
                 </div>
-                {% endfor %}
-                {% endif %}
+                {% endfor %} {% endif %}
             </div>
         </div>
     </div>

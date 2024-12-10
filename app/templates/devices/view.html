@@ -1,12 +1,9 @@
-{% extends "base.html" %}
-{% block content %}
+{% extends "base.html" %} {% block content %}
 <div class="page-header d-print-none">
     <div class="container-xl">
         <div class="row g-2 align-items-center">
             <div class="col">
-                <h2 class="page-title">
-                    {{ device.statusnet_hostname }}
-                </h2>
+                <h2 class="page-title">{{ device.statusnet_hostname }}</h2>
             </div>
         </div>
     </div>
@@ -21,27 +18,45 @@
                         <div class="datagrid">
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Version</div>
-                                <div class="datagrid-content">{{ device.statusfwr_version }}</div>
+                                <div class="datagrid-content">
+                                    {{ device.statusfwr_version }}
+                                </div>
                             </div>
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Build Date & Time</div>
-                                <div class="datagrid-content">{{ device.statusfwr_builddatetime }}</div>
+                                <div class="datagrid-title">
+                                    Build Date & Time
+                                </div>
+                                <div class="datagrid-content">
+                                    {{ device.statusfwr_builddatetime }}
+                                </div>
                             </div>
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Core/SDK Version</div>
-                                <div class="datagrid-content">{{ device.statusfwr_core }}</div>
+                                <div class="datagrid-title">
+                                    Core/SDK Version
+                                </div>
+                                <div class="datagrid-content">
+                                    {{ device.statusfwr_core }}
+                                </div>
                             </div>
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Uptime</div>
-                                <div class="datagrid-content">{{ device.statussts_uptime }}</div>
+                                <div class="datagrid-content">
+                                    {{ device.statussts_uptime }}
+                                </div>
                             </div>
                             <div class="datagrid-item">
-                                <div class="datagrid-title">Flash Write Count</div>
-                                <div class="datagrid-content">{{ device.statusprm_savecount }}</div>
+                                <div class="datagrid-title">
+                                    Flash Write Count
+                                </div>
+                                <div class="datagrid-content">
+                                    {{ device.statusprm_savecount }}
+                                </div>
                             </div>
                             <div class="datagrid-item">
                                 <div class="datagrid-title">Boot Count</div>
-                                <div class="datagrid-content">{{ device.statusprm_bootcount  }}</div>
+                                <div class="datagrid-content">
+                                    {{ device.statusprm_bootcount }}
+                                </div>
                             </div>
                         </div>
                     </div>

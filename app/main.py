@@ -160,7 +160,7 @@ async def read_root(
 ):
     """Protected route: Render the dashboard."""
     # devices = db.query(Devices).all()
-    devices = Devices.get_all_devices(db, columns=['unique_id', 'favorite', 'statusnet_hostname', 'statusfwr_version', 'statussts_wifi_ssid', 'statussts_power'])
+    devices = Devices.get_all_devices(db, columns=['unique_id', 'favorite', 'statusnet_hostname', 'statusfwr_version', 'statussts_wifi_ssid', 'statussts_power', 'statusnet_ipaddress'])
     return templates.TemplateResponse(
         "dashboard.html", {"request": request, "username": username, "devices": devices}
     )
