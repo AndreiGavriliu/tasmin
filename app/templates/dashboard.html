@@ -16,50 +16,45 @@
     <div class="container-xl">
         <div class="row row-cols-1 row-cols-md-3 g-4">
             {% for device in devices %} {% if device.favorite == True %}
-
             <div class="col">
-                <div class="card card-link-pop">
-                    {% if device.statussts_power == "ON" %}
-                    <div class="ribbon bg-green">
-                        {{ device.statussts_power }}
-                    </div>
-                    {% elif device.statussts_power == "OFF" %}
-                    <div class="ribbon bg-red">
-                        {{ device.statussts_power }}
-                    </div>
-                    {% endif %}
-                    <div class="card-body">
-                        <h3 class="card-title">
-                            <a href="/devices/{{ device.unique_id }}">
-                                {{ device.statusnet_hostname }} </a
-                            >&nbsp;
-                            <a
-                                href="http://{{ device.statusnet_ipaddress }}"
-                                target="_blank"
-                                ><i class="ti ti-external-link"></i
-                            ></a>
-                        </h3>
-                        <div class="datagrid">
-                            <div class="datagrid-item">
-                                <div class="datagrid-title">
-                                    <i class="ti ti-wifi"></i>&nbsp;Wi-Fi SSID
+                <a href="/devices/{{ device.unique_id }}" class="text-decoration-none">
+                    <div class="card card-link-pop">
+                        {% if device.statussts_power == "ON" %}
+                        <div class="ribbon bg-green">
+                            {{ device.statussts_power }}
+                        </div>
+                        {% elif device.statussts_power == "OFF" %}
+                        <div class="ribbon bg-red">
+                            {{ device.statussts_power }}
+                        </div>
+                        {% endif %}
+                        <div class="card-body">
+                            <h3 class="card-title">
+                                {{ device.statusnet_hostname }}
+                            </h3>
+                            <div class="datagrid">
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title">
+                                        <i class="ti ti-wifi"></i>&nbsp;Wi-Fi
+                                        SSID
+                                    </div>
+                                    <div class="datagrid-content">
+                                        {{ device.statussts_wifi_ssid }}
+                                    </div>
                                 </div>
-                                <div class="datagrid-content">
-                                    {{ device.statussts_wifi_ssid }}
-                                </div>
-                            </div>
-                            <div class="datagrid-item">
-                                <div class="datagrid-title">
-                                    <i class="ti ti-cpu"></i>&nbsp;Firmware
-                                    Version
-                                </div>
-                                <div class="datagrid-content">
-                                    {{ device.statusfwr_version }}
+                                <div class="datagrid-item">
+                                    <div class="datagrid-title">
+                                        <i class="ti ti-cpu"></i>&nbsp;Firmware
+                                        Version
+                                    </div>
+                                    <div class="datagrid-content">
+                                        {{ device.statusfwr_version }}
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
             {% endif %} {% endfor %}
         </div>
